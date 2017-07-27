@@ -224,7 +224,7 @@ fi
 
     # copy sane config defaults from host
     #cp /etc/resolv.conf "$rootfsDir/etc/"
-    cp /etc/timezone "$rootfsDir/etc/"
+    #cp /etc/timezone "$rootfsDir/etc/"
     
     # install base++ packages
     rootfs_chroot sh -xc 'apt-get install -y ca-certificates'
