@@ -216,7 +216,7 @@ fi
 	set -x
     ### Bearstech customisations
     base=`pwd`
-    rsync -av "$base/base/" "$rootfsDir/"
+    rsync -av "$base/base/$suite/" "$rootfsDir/"
     curl -s https://deb.bearstech.com/bearstech-archive.gpg | rootfs_chroot sh -xc 'apt-key add -'
     
 	# make sure we're fully up-to-date
