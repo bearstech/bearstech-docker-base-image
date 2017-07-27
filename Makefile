@@ -1,4 +1,6 @@
-all: jessie stretch
+all: jessie stretch latest
+
+latest:
 	docker tag bearstech/debian:stretch bearstech/debian:latest
 
 jessie: /usr/share/docker-engine/contrib/mkimage/debootstrap.bearstech
