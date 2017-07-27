@@ -74,6 +74,8 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
   config.vm.provision "shell", inline: <<-SHELL
+    timedatectl set-timezone Europe/Paris
+
     apt-get update
     apt-get install -y linux-image-amd64
     apt-get upgrade -y
