@@ -75,6 +75,10 @@ Vagrant.configure("2") do |config|
   # SHELL
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
+    apt-get install -y linux-image-amd64
+    apt-get upgrade -y
+    #vbguest
+    apt-get install -y linux-headers-`uname -r` dkms
     apt-get install -y apt-transport-https debootstrap gnupg2 dirmngr
     apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
     echo 'deb https://apt.dockerproject.org/repo debian-stretch main' > /etc/apt/sources.list.d/docker.list
