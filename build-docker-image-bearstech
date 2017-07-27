@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# FLAVOR=flavor /usr/share/docker-engine/contrib/mkimage.sh -t bearstech/jessie debootstrap --variant=minbase jessie
-# FLAVOR env var is used to activate or not some feature
-# Available flavors are :
-# - base, default, if FLAVOR is not set or equal to ""
-# - node, FLAVOR="node", add nodejs install nodejs inside the image
-
 set -e
 
 mkimg="$(basename "$0")"
