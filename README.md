@@ -1,6 +1,6 @@
 # Bearstech Docker base image
 
-Juste use make :
+Just use make :
 
     make
 
