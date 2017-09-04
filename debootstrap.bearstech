@@ -217,17 +217,18 @@ fi
     ### Bearstech customisations
     base=`pwd`
     rsync -av "$base/base/$suite/" "$rootfsDir/"
-    curl -s https://deb.bearstech.com/bearstech-archive.gpg | rootfs_chroot sh -xc 'apt-key add -'
+    curl -s https://deb.bearstech.com/bearstech-archive.gpg | rootfs_chroot apt-key add -
     
 	# make sure we're fully up-to-date
-	rootfs_chroot sh -xc 'apt-get update && apt-get dist-upgrade -y'
+	rootfs_chroot apt-get update
+	rootfs_chroot apt-get dist-upgrade -y
 
     # copy sane config defaults from host
     #cp /etc/resolv.conf "$rootfsDir/etc/"
     #cp /etc/timezone "$rootfsDir/etc/"
     
     # install base++ packages
-    rootfs_chroot sh -xc 'apt-get install -y ca-certificates'
+    rootfs_chroot apt-get install -y ca-certificates
 
     ### End Bearstech customisations
 
