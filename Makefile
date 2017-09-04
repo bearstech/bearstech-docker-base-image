@@ -11,3 +11,7 @@ stretch: /usr/share/docker-engine/contrib/mkimage/debootstrap.bearstech
 
 /usr/share/docker-engine/contrib/mkimage/debootstrap.bearstech:
 	ln -s `pwd`/debootstrap.bearstech /usr/share/docker-engine/contrib/mkimage/
+
+clean:
+	rm -f /usr/share/docker-engine/contrib/mkimage/debootstrap.bearstech
+	rm -rf /var/tmp/docker-mkimage.*
