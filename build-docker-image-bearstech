@@ -16,7 +16,7 @@ usage() {
 	exit 1
 }
 
-scriptDir="/usr/share/docker-engine/contrib/mkimage"
+scriptDir="$(pwd)/mkimage"
 
 os=
 os=$(uname -o)
