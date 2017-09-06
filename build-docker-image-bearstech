@@ -98,6 +98,7 @@ echo >&2 "+ cat > '$dir/Dockerfile'"
 cat > "$dir/Dockerfile" <<EOF
 FROM scratch
 ADD $(basename "$tarFile") /
+LABEL com.bearstech.image.commit=$(git rev-parse HEAD) maintainer=admin@bearstech.com
 EOF
 
 # if our generated image has a decent shell, let's set a default command
