@@ -17,5 +17,16 @@ stretch-test:
 
 test: jessie-test stretch-test
 
+jessie-push:
+	docker push bearstech/debian:jessie
+	docker push bearstech/debian:8
+
+stretch-push:
+	docker push bearstech/debian:stretch
+	docker push bearstech/debian:9
+	docker push bearstech/debian:latest
+
+push: jessie-push stretch-push
+
 clean:
 	rm -rf /var/tmp/docker-mkimage.*
