@@ -83,13 +83,29 @@ Vagrant.configure("2") do |config|
     #vbguest
     apt-get install -y linux-headers-`uname -r` dkms
 
-    apt-get install -y apt-transport-https debootstrap gnupg2 dirmngr curl
+    apt-get install -y \
+      apt-transport-https \
+      ca-certificates \
+      apt-transport-https \
+      curl \
+      dirmngr \
+      debootstrap \
+      gnupg2 \
+      software-properties-common
 
     #Docker
-    apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-    echo 'deb https://apt.dockerproject.org/repo debian-stretch main' > /etc/apt/sources.list.d/docker.list
+    # https://docs.docker.com/engine/installation/linux/docker-ce/debian/#install-using-the-repository
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+    echo "Verify that the key ID is 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88"
+    apt-key fingerprint 0EBFCD88
+
+    echo "deb [arch=amd64] https://download.docker.com/linux/debian \
+            $(lsb_release -cs) \
+            stable" > /etc/apt/sources.list.d/docker.list
     apt-get update
-    apt-get install -y docker-engine
+    apt-get install -y docker-ce
+
+    docker run hello-world
 
   SHELL
 
