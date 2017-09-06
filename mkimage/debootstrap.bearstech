@@ -227,9 +227,6 @@ fi
 	#cp /etc/resolv.conf "$rootfsDir/etc/"
 	#cp /etc/timezone "$rootfsDir/etc/"
 
-	# install base++ packages
-	rootfs_chroot apt-get install -y ca-certificates
-
 	### End Bearstech customisations
 
 
