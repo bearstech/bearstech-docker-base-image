@@ -86,7 +86,6 @@ Vagrant.configure("2") do |config|
     apt-get install -y \
       apt-transport-https \
       ca-certificates \
-      apt-transport-https \
       curl \
       dirmngr \
       debootstrap \
