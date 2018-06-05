@@ -16,7 +16,7 @@ suite="$1"
 shift
 
 # get path to "chroot" in our current PATH
-chrootPath="$(type -P chroot)"
+chrootPath="$(which chroot)"
 rootfs_chroot() {
 	# "chroot" doesn't set PATH, so we need to set it explicitly to something our new debootstrap chroot can use appropriately!
 
