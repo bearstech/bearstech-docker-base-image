@@ -1,32 +1,48 @@
 all: jessie stretch
 
-jessie:
+bt_tool_build:
+	docker build \
+		-t bt_tool_build \
+		-f Dockerfile.tool \
+		.
+
+jessie: bt_tool_build
+	docker run --privileged --rm -it \
+		-v `pwd`:/work \
+		-v /var/run/docker.sock:/var/run/docker.sock \
+		bt_tool_build \
+		jessie_real
+
+stretch: bt_tool_build
+	docker run --privileged --rm -it \
+		-v `pwd`:/work \
+		-v /var/run/docker.sock:/var/run/docker.sock \
+		bt_tool_build \
+		stretch_real
+
+jessie_real:
 	./build-docker-image-bearstech -t bearstech/debian:jessie debootstrap.bearstech jessie
 	docker tag bearstech/debian:jessie bearstech/debian:8
 
-jessie-test:
-	docker run -ti --rm bearstech/debian:jessie cat /etc/debian_version
-
-stretch:
+stretch_real:
 	./build-docker-image-bearstech -t bearstech/debian:stretch debootstrap.bearstech stretch
 	docker tag bearstech/debian:stretch bearstech/debian:latest
 	docker tag bearstech/debian:stretch bearstech/debian:9
+
+jessie-test:
+	docker run -ti --rm bearstech/debian:jessie cat /etc/debian_version
 
 stretch-test:
 	docker run -ti --rm bearstech/debian:stretch cat /etc/debian_version
 
 test: jessie-test stretch-test
 
-jessie-push:
+push: jessie-push stretch-push
 	docker push bearstech/debian:jessie
 	docker push bearstech/debian:8
-
-stretch-push:
 	docker push bearstech/debian:stretch
 	docker push bearstech/debian:9
 	docker push bearstech/debian:latest
-
-push: jessie-push stretch-push
 
 clean:
 	rm -rf /var/tmp/docker-mkimage.*
