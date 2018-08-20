@@ -35,10 +35,10 @@ stretch_real:
 	docker tag bearstech/debian:stretch bearstech/debian:9
 
 jessie-test:
-	docker run -ti --rm bearstech/debian:jessie cat /etc/debian_version
+	docker run --rm bearstech/debian:jessie cat /etc/debian_version
 
 stretch-test:
-	docker run -ti --rm bearstech/debian:stretch cat /etc/debian_version
+	docker run --rm bearstech/debian:stretch cat /etc/debian_version
 
 tests: jessie-test stretch-test
 
