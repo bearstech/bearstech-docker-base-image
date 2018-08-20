@@ -12,14 +12,14 @@ bt_tool_build:
 		.
 
 jessie: bt_tool_build
-	docker run --privileged --rm -it \
+	docker run --privileged --rm \
 		-v `pwd`:/work \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		bt_tool_build \
 		jessie_real
 
 stretch: bt_tool_build
-	docker run --privileged --rm -it \
+	docker run --privileged --rm \
 		-v `pwd`:/work \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		bt_tool_build \
