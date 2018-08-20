@@ -1,4 +1,9 @@
-all: jessie stretch
+all:
+
+build: jessie stretch
+
+pull:
+	printf "Nothing to pull\\n"
 
 bt_tool_build:
 	docker build \
@@ -35,14 +40,21 @@ jessie-test:
 stretch-test:
 	docker run -ti --rm bearstech/debian:stretch cat /etc/debian_version
 
-test: jessie-test stretch-test
+tests: jessie-test stretch-test
 
-push: jessie-push stretch-push
+push:
 	docker push bearstech/debian:jessie
 	docker push bearstech/debian:8
 	docker push bearstech/debian:stretch
 	docker push bearstech/debian:9
 	docker push bearstech/debian:latest
+
+remove_image:
+	docker rmi bearstech/debian:jessie
+	docker rmi bearstech/debian:8
+	docker rmi bearstech/debian:stretch
+	docker rmi bearstech/debian:9
+	docker rmi bearstech/debian:latest
 
 clean:
 	rm -rf /var/tmp/docker-mkimage.*
