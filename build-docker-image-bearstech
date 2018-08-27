@@ -99,6 +99,9 @@ cat > "$dir/Dockerfile" <<EOF
 FROM scratch
 ADD $(basename "$tarFile") /
 LABEL com.bearstech.image.commit=$(git rev-parse HEAD) maintainer=admin@bearstech.com
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 EOF
 
 # if our generated image has a decent shell, let's set a default command
