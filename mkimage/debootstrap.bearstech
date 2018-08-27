@@ -226,6 +226,9 @@ fi
 	# copy sane config defaults from host
 	#cp /etc/resolv.conf "$rootfsDir/etc/"
 	#cp /etc/timezone "$rootfsDir/etc/"
+    echo "Europe/Paris" > /etc/timezone
+    ln -fs /usr/share/zoneinfo/Europe/Paris /etc/localtime
+    dpkg-reconfigure -f noninteractive tzdata
 
 	### End Bearstech customisations
 
