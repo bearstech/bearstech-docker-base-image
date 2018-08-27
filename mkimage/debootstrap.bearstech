@@ -225,6 +225,11 @@ fi
 
 	# copy sane config defaults from host
 	#cp /etc/resolv.conf "$rootfsDir/etc/"
+
+    # Locale gen
+    rootfs_chroot apt-get install -y locales
+    rootfs_chroot locale-gen
+
 	#cp /etc/timezone "$rootfsDir/etc/"
     echo "Europe/Paris" > $rootfsDir/etc/timezone
     ln -fs /usr/share/zoneinfo/Europe/Paris $rootfsDir/etc/localtime
