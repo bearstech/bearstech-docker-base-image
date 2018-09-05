@@ -1,6 +1,6 @@
 all: build
 
-build: | jessie stretch stretch_dev
+build: | jessie stretch
 
 pull:
 	printf "Nothing to pull\\n"
@@ -23,7 +23,7 @@ stretch: bt_tool_build
 		-v `pwd`:/work \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		bt_tool_build \
-		stretch_real
+		stretch_real stretch_dev
 
 stretch_dev:
 	docker build -t bearstech/debian-dev:stretch -f Dockerfile.dev .
