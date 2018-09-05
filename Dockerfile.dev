@@ -1,0 +1,12 @@
+FROM bearstech/debian:stretch
+
+RUN set -eux \
+    &&  apt-get update \
+    &&  apt-get install -y --no-install-recommends \
+            build-essential \
+            ca-certificates \
+            curl \
+            git \
+            mercurial \
+    &&  apt-get clean \
+    &&  rm -rf /var/lib/apt/lists/*

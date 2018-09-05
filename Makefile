@@ -1,6 +1,6 @@
 all: build
 
-build: jessie stretch
+build: | jessie stretch stretch_dev
 
 pull:
 	printf "Nothing to pull\\n"
@@ -25,6 +25,11 @@ stretch: bt_tool_build
 		bt_tool_build \
 		stretch_real
 
+stretch_dev:
+	docker build -t bearstech/debian-dev:stretch -f Dockerfile.dev .
+	docker tag bearstech/debian-dev:stretch bearstech/debian-dev:9
+	docker tag bearstech/debian-dev:stretch bearstech/debian-dev:latest
+
 jessie_real:
 	./build-docker-image-bearstech -t bearstech/debian:jessie debootstrap.bearstech jessie
 	docker tag bearstech/debian:jessie bearstech/debian:8
@@ -48,6 +53,9 @@ push:
 	docker push bearstech/debian:stretch
 	docker push bearstech/debian:9
 	docker push bearstech/debian:latest
+	docker push bearstech/debian-dev:stretch
+	docker push bearstech/debian-dev:9
+	docker push bearstech/debian-dev:latest
 
 remove_image:
 	docker rmi bearstech/debian:jessie
@@ -55,6 +63,9 @@ remove_image:
 	docker rmi bearstech/debian:stretch
 	docker rmi bearstech/debian:9
 	docker rmi bearstech/debian:latest
+	docker rmi bearstech/debian-dev:stretch
+	docker rmi bearstech/debian-dev:9
+	docker rmi bearstech/debian-dev:latest
 
 clean:
 	rm -rf /var/tmp/docker-mkimage.*
